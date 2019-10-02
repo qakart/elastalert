@@ -50,7 +50,18 @@ COPY elastalert_modules/ /opt/elastalert/elastalert_modules
 RUN mkdir -p /opt/elastalert/rules/ /opt/elastalert/server_data/tests/ \
     && chown -R node:node /opt
 
+RUN mkdir -p /opt/cert && chown -R node:node /opt/cert \
+    && pwd
+# RUN chmod -R 755 /opt/cert
+WORKDIR /opt/cert
+RUN ls
+
+
+COPY /Users/kshanmugan/workspace/tmp/elastalert/cert /opt/cert
+
+
+
 USER node
 
 EXPOSE 3030
-ENTRYPOINT ["npm", "start"]
+# ENTRYPOINT ["npm", "start"]
